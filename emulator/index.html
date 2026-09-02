@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Emulator Conveyor S7-1200</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header>
+        <div>
+          <p class="eyebrow">SIEMENS S7-1200 · LAD</p>
+          <h1>Conveyor Training Cell</h1>
+          <p class="subtitle">Emulator logika scan PLC—jalankan, hentikan, dan uji kondisi macet.</p>
+        </div>
+        <div id="cpu" class="cpu"><span></span> CPU RUN</div>
+      </header>
+
+      <section class="plant panel">
+        <div class="machine-label">CV-101</div>
+        <div id="belt" class="belt"><div class="belt-stripes"></div><div id="products"></div></div>
+        <div class="sensor"><i id="sensorBeam"></i><span>Jam sensor<br />I0.4</span></div>
+        <div class="motor"><span id="motorRotor">M</span><small>Q0.0</small></div>
+      </section>
+
+      <section class="layout">
+        <div class="panel controls">
+          <h2>Operator panel</h2>
+          <div class="buttons">
+            <button id="start" class="push start">START</button>
+            <button id="stop" class="push stop">STOP</button>
+            <button id="reset" class="push reset">RESET</button>
+          </div>
+          <div class="utility-buttons">
+            <button id="addProduct" class="secondary">+ Tambah produk</button>
+            <button id="clearJam" class="secondary">Bersihkan sensor</button>
+          </div>
+          <label class="switch-row"><span>E-Stop sehat <b>I0.2</b></span><input id="eStopOK" type="checkbox" checked /></label>
+          <label class="switch-row"><span>Overload sehat <b>I0.3</b></span><input id="overloadOK" type="checkbox" checked /></label>
+          <label class="switch-row"><span>Simulasi macet</span><input id="forceJam" type="checkbox" /></label>
+        </div>
+
+        <div class="panel status">
+          <h2>Status PLC</h2>
+          <div class="lamps">
+            <div><i id="runLamp" class="lamp green"></i><span>RUN<br /><b>Q0.1</b></span></div>
+            <div><i id="faultLamp" class="lamp red"></i><span>FAULT<br /><b>Q0.2</b></span></div>
+            <div><i id="motorLamp" class="lamp blue"></i><span>MOTOR<br /><b>Q0.0</b></span></div>
+          </div>
+          <dl>
+            <div><dt>Run latch</dt><dd id="runLatch">FALSE</dd></div>
+            <div><dt>Fault latch</dt><dd id="faultLatch">FALSE</dd></div>
+            <div><dt>Jam timer</dt><dd id="jamTimer">0.0 / 5.0 s</dd></div>
+            <div><dt>Produk keluar</dt><dd id="productCount">0</dd></div>
+          </dl>
+        </div>
+      </section>
+      <p class="note">Emulator browser ini meniru urutan scan LAD untuk latihan. Validasi PLC tetap dilakukan di TIA Portal + S7-PLCSIM.</p>
+    </main>
+    <script type="module" src="conveyor.js"></script>
+  </body>
+</html>

@@ -1,0 +1,996 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V16" />
+  <SW.Blocks.FB ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <Interface>
+        <Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v4">
+          <Section Name="Input">
+            <Member Name="FirstScan" Datatype="Bool" />
+            <Member Name="StartButton" Datatype="Bool" />
+            <Member Name="StopOK" Datatype="Bool" />
+            <Member Name="EStopOK" Datatype="Bool" />
+            <Member Name="OverloadOK" Datatype="Bool" />
+            <Member Name="JamSensor" Datatype="Bool" />
+            <Member Name="ResetButton" Datatype="Bool" />
+            <Member Name="JamTime" Datatype="Time"><StartValue>T#5s</StartValue></Member>
+          </Section>
+          <Section Name="Output">
+            <Member Name="MotorCmd" Datatype="Bool" />
+            <Member Name="RunLamp" Datatype="Bool" />
+            <Member Name="FaultLamp" Datatype="Bool" />
+          </Section>
+          <Section Name="InOut" />
+          <Section Name="Static">
+            <Member Name="RunLatch" Datatype="Bool"><StartValue>FALSE</StartValue></Member>
+            <Member Name="FaultLatch" Datatype="Bool"><StartValue>FALSE</StartValue></Member>
+            <Member Name="JamTimer" Datatype="TON_TIME" />
+          </Section>
+          <Section Name="Temp" />
+          <Section Name="Constant" />
+        </Sections>
+      </Interface>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>FB_Conveyor_LAD</Name>
+      <Number>2</Number>
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <SW.Blocks.CompileUnit ID="1" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+              <Parts>
+                <Access UId="21" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="FirstScan" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="22" />
+                <Access UId="25" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="RunLatch" />
+                  </Symbol>
+                </Access>
+                <Part Name="RCoil" UId="26" />
+              </Parts>
+              <Wires>
+                <Wire UId="23">
+                  <Powerrail />
+                  <NameCon UId="22" Name="in" />
+                </Wire>
+                <Wire UId="24">
+                  <IdentCon UId="21" />
+                  <NameCon UId="22" Name="operand" />
+                </Wire>
+                <Wire UId="27">
+                  <NameCon UId="22" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                </Wire>
+                <Wire UId="28">
+                  <IdentCon UId="25" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="2" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="3" CompositionName="Items">
+                <AttributeList><Culture>en-US</Culture><Text>01 - First scan: reset run latch</Text></AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="4" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+              <Parts>
+                <Access UId="21" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="FirstScan" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="22" />
+                <Access UId="25" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="FaultLatch" />
+                  </Symbol>
+                </Access>
+                <Part Name="RCoil" UId="26" />
+              </Parts>
+              <Wires>
+                <Wire UId="23">
+                  <Powerrail />
+                  <NameCon UId="22" Name="in" />
+                </Wire>
+                <Wire UId="24">
+                  <IdentCon UId="21" />
+                  <NameCon UId="22" Name="operand" />
+                </Wire>
+                <Wire UId="27">
+                  <NameCon UId="22" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                </Wire>
+                <Wire UId="28">
+                  <IdentCon UId="25" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="5" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="6" CompositionName="Items">
+                <AttributeList><Culture>en-US</Culture><Text>02 - First scan: reset fault latch</Text></AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="7" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+              <Parts>
+                <Access UId="21" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="EStopOK" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="22">
+                  <Negated Name="operand" />
+                </Part>
+                <Access UId="25" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="FaultLatch" />
+                  </Symbol>
+                </Access>
+                <Part Name="SCoil" UId="26" />
+              </Parts>
+              <Wires>
+                <Wire UId="23">
+                  <Powerrail />
+                  <NameCon UId="22" Name="in" />
+                </Wire>
+                <Wire UId="24">
+                  <IdentCon UId="21" />
+                  <NameCon UId="22" Name="operand" />
+                </Wire>
+                <Wire UId="27">
+                  <NameCon UId="22" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                </Wire>
+                <Wire UId="28">
+                  <IdentCon UId="25" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="8" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList><Culture>en-US</Culture><Text>03 - E-Stop tidak sehat: latch fault</Text></AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="A" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+              <Parts>
+                <Access UId="21" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="OverloadOK" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="22">
+                  <Negated Name="operand" />
+                </Part>
+                <Access UId="25" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="FaultLatch" />
+                  </Symbol>
+                </Access>
+                <Part Name="SCoil" UId="26" />
+              </Parts>
+              <Wires>
+                <Wire UId="23">
+                  <Powerrail />
+                  <NameCon UId="22" Name="in" />
+                </Wire>
+                <Wire UId="24">
+                  <IdentCon UId="21" />
+                  <NameCon UId="22" Name="operand" />
+                </Wire>
+                <Wire UId="27">
+                  <NameCon UId="22" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                </Wire>
+                <Wire UId="28">
+                  <IdentCon UId="25" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="B" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList><Culture>en-US</Culture><Text>04 - Overload tidak sehat: latch fault</Text></AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="D" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+              <Parts>
+                <Access UId="21" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="MotorCmd" />
+                  </Symbol>
+                </Access>
+                <Access UId="25" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="JamSensor" />
+                  </Symbol>
+                </Access>
+                <Access UId="29" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="JamTime" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="22" />
+                <Part Name="Contact" UId="26" />
+                <Part Name="TON" UId="30" Version="1.0">
+                  <Instance Scope="LocalVariable" UId="31">
+                    <Component Name="JamTimer" />
+                  </Instance>
+                  <TemplateValue Name="time_type" Type="Type">Time</TemplateValue>
+                </Part>
+              </Parts>
+              <Wires>
+                <Wire UId="23"><Powerrail /><NameCon UId="22" Name="in" /></Wire>
+                <Wire UId="24"><IdentCon UId="21" /><NameCon UId="22" Name="operand" /></Wire>
+                <Wire UId="27"><NameCon UId="22" Name="out" /><NameCon UId="26" Name="in" /></Wire>
+                <Wire UId="28"><IdentCon UId="25" /><NameCon UId="26" Name="operand" /></Wire>
+                <Wire UId="32"><NameCon UId="26" Name="out" /><NameCon UId="30" Name="IN" /></Wire>
+                <Wire UId="33"><IdentCon UId="29" /><NameCon UId="30" Name="PT" /></Wire>
+                <Wire UId="35"><NameCon UId="30" Name="Q" /><OpenCon UId="34" /></Wire>
+                <Wire UId="37"><NameCon UId="30" Name="ET" /><OpenCon UId="36" /></Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="E" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="F" CompositionName="Items">
+                <AttributeList><Culture>en-US</Culture><Text>05 - TON: deteksi sensor macet saat motor berjalan</Text></AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="10" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+              <Parts>
+                <Access UId="21" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="JamTimer" />
+                    <Component Name="Q" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="22" />
+                <Access UId="25" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="FaultLatch" />
+                  </Symbol>
+                </Access>
+                <Part Name="SCoil" UId="26" />
+              </Parts>
+              <Wires>
+                <Wire UId="23">
+                  <Powerrail />
+                  <NameCon UId="22" Name="in" />
+                </Wire>
+                <Wire UId="24">
+                  <IdentCon UId="21" />
+                  <NameCon UId="22" Name="operand" />
+                </Wire>
+                <Wire UId="27">
+                  <NameCon UId="22" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                </Wire>
+                <Wire UId="28">
+                  <IdentCon UId="25" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="11" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="12" CompositionName="Items">
+                <AttributeList><Culture>en-US</Culture><Text>06 - Timer macet selesai: latch fault</Text></AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="13" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+              <Parts>
+                <Access UId="21" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="ResetButton" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="22" />
+                <Access UId="25" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="StopOK" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="26" />
+                <Access UId="29" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="EStopOK" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="30" />
+                <Access UId="33" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="OverloadOK" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="34" />
+                <Access UId="37" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="JamSensor" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="38">
+                  <Negated Name="operand" />
+                </Part>
+                <Access UId="41" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="FaultLatch" />
+                  </Symbol>
+                </Access>
+                <Part Name="RCoil" UId="42" />
+              </Parts>
+              <Wires>
+                <Wire UId="23">
+                  <Powerrail />
+                  <NameCon UId="22" Name="in" />
+                </Wire>
+                <Wire UId="24">
+                  <IdentCon UId="21" />
+                  <NameCon UId="22" Name="operand" />
+                </Wire>
+                <Wire UId="27">
+                  <NameCon UId="22" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                </Wire>
+                <Wire UId="28">
+                  <IdentCon UId="25" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+                <Wire UId="31">
+                  <NameCon UId="26" Name="out" />
+                  <NameCon UId="30" Name="in" />
+                </Wire>
+                <Wire UId="32">
+                  <IdentCon UId="29" />
+                  <NameCon UId="30" Name="operand" />
+                </Wire>
+                <Wire UId="35">
+                  <NameCon UId="30" Name="out" />
+                  <NameCon UId="34" Name="in" />
+                </Wire>
+                <Wire UId="36">
+                  <IdentCon UId="33" />
+                  <NameCon UId="34" Name="operand" />
+                </Wire>
+                <Wire UId="39">
+                  <NameCon UId="34" Name="out" />
+                  <NameCon UId="38" Name="in" />
+                </Wire>
+                <Wire UId="40">
+                  <IdentCon UId="37" />
+                  <NameCon UId="38" Name="operand" />
+                </Wire>
+                <Wire UId="43">
+                  <NameCon UId="38" Name="out" />
+                  <NameCon UId="42" Name="in" />
+                </Wire>
+                <Wire UId="44">
+                  <IdentCon UId="41" />
+                  <NameCon UId="42" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="14" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="15" CompositionName="Items">
+                <AttributeList><Culture>en-US</Culture><Text>07 - Reset fault hanya saat kondisi sehat</Text></AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="16" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+              <Parts>
+                <Access UId="21" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="StartButton" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="22" />
+                <Access UId="25" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="StopOK" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="26" />
+                <Access UId="29" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="EStopOK" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="30" />
+                <Access UId="33" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="OverloadOK" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="34" />
+                <Access UId="37" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="JamSensor" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="38">
+                  <Negated Name="operand" />
+                </Part>
+                <Access UId="41" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="FaultLatch" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="42">
+                  <Negated Name="operand" />
+                </Part>
+                <Access UId="45" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="RunLatch" />
+                  </Symbol>
+                </Access>
+                <Part Name="SCoil" UId="46" />
+              </Parts>
+              <Wires>
+                <Wire UId="23">
+                  <Powerrail />
+                  <NameCon UId="22" Name="in" />
+                </Wire>
+                <Wire UId="24">
+                  <IdentCon UId="21" />
+                  <NameCon UId="22" Name="operand" />
+                </Wire>
+                <Wire UId="27">
+                  <NameCon UId="22" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                </Wire>
+                <Wire UId="28">
+                  <IdentCon UId="25" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+                <Wire UId="31">
+                  <NameCon UId="26" Name="out" />
+                  <NameCon UId="30" Name="in" />
+                </Wire>
+                <Wire UId="32">
+                  <IdentCon UId="29" />
+                  <NameCon UId="30" Name="operand" />
+                </Wire>
+                <Wire UId="35">
+                  <NameCon UId="30" Name="out" />
+                  <NameCon UId="34" Name="in" />
+                </Wire>
+                <Wire UId="36">
+                  <IdentCon UId="33" />
+                  <NameCon UId="34" Name="operand" />
+                </Wire>
+                <Wire UId="39">
+                  <NameCon UId="34" Name="out" />
+                  <NameCon UId="38" Name="in" />
+                </Wire>
+                <Wire UId="40">
+                  <IdentCon UId="37" />
+                  <NameCon UId="38" Name="operand" />
+                </Wire>
+                <Wire UId="43">
+                  <NameCon UId="38" Name="out" />
+                  <NameCon UId="42" Name="in" />
+                </Wire>
+                <Wire UId="44">
+                  <IdentCon UId="41" />
+                  <NameCon UId="42" Name="operand" />
+                </Wire>
+                <Wire UId="47">
+                  <NameCon UId="42" Name="out" />
+                  <NameCon UId="46" Name="in" />
+                </Wire>
+                <Wire UId="48">
+                  <IdentCon UId="45" />
+                  <NameCon UId="46" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="17" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="18" CompositionName="Items">
+                <AttributeList><Culture>en-US</Culture><Text>08 - START: latch perintah jalan</Text></AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="19" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+              <Parts>
+                <Access UId="21" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="StopOK" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="22">
+                  <Negated Name="operand" />
+                </Part>
+                <Access UId="25" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="RunLatch" />
+                  </Symbol>
+                </Access>
+                <Part Name="RCoil" UId="26" />
+              </Parts>
+              <Wires>
+                <Wire UId="23">
+                  <Powerrail />
+                  <NameCon UId="22" Name="in" />
+                </Wire>
+                <Wire UId="24">
+                  <IdentCon UId="21" />
+                  <NameCon UId="22" Name="operand" />
+                </Wire>
+                <Wire UId="27">
+                  <NameCon UId="22" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                </Wire>
+                <Wire UId="28">
+                  <IdentCon UId="25" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="1A" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="1B" CompositionName="Items">
+                <AttributeList><Culture>en-US</Culture><Text>09 - STOP: reset perintah jalan</Text></AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="1C" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+              <Parts>
+                <Access UId="21" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="EStopOK" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="22">
+                  <Negated Name="operand" />
+                </Part>
+                <Access UId="25" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="RunLatch" />
+                  </Symbol>
+                </Access>
+                <Part Name="RCoil" UId="26" />
+              </Parts>
+              <Wires>
+                <Wire UId="23">
+                  <Powerrail />
+                  <NameCon UId="22" Name="in" />
+                </Wire>
+                <Wire UId="24">
+                  <IdentCon UId="21" />
+                  <NameCon UId="22" Name="operand" />
+                </Wire>
+                <Wire UId="27">
+                  <NameCon UId="22" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                </Wire>
+                <Wire UId="28">
+                  <IdentCon UId="25" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="1D" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="1E" CompositionName="Items">
+                <AttributeList><Culture>en-US</Culture><Text>10 - E-Stop: reset perintah jalan</Text></AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="1F" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+              <Parts>
+                <Access UId="21" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="OverloadOK" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="22">
+                  <Negated Name="operand" />
+                </Part>
+                <Access UId="25" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="RunLatch" />
+                  </Symbol>
+                </Access>
+                <Part Name="RCoil" UId="26" />
+              </Parts>
+              <Wires>
+                <Wire UId="23">
+                  <Powerrail />
+                  <NameCon UId="22" Name="in" />
+                </Wire>
+                <Wire UId="24">
+                  <IdentCon UId="21" />
+                  <NameCon UId="22" Name="operand" />
+                </Wire>
+                <Wire UId="27">
+                  <NameCon UId="22" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                </Wire>
+                <Wire UId="28">
+                  <IdentCon UId="25" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="20" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="21" CompositionName="Items">
+                <AttributeList><Culture>en-US</Culture><Text>11 - Overload: reset perintah jalan</Text></AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="22" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+              <Parts>
+                <Access UId="21" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="FaultLatch" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="22" />
+                <Access UId="25" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="RunLatch" />
+                  </Symbol>
+                </Access>
+                <Part Name="RCoil" UId="26" />
+              </Parts>
+              <Wires>
+                <Wire UId="23">
+                  <Powerrail />
+                  <NameCon UId="22" Name="in" />
+                </Wire>
+                <Wire UId="24">
+                  <IdentCon UId="21" />
+                  <NameCon UId="22" Name="operand" />
+                </Wire>
+                <Wire UId="27">
+                  <NameCon UId="22" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                </Wire>
+                <Wire UId="28">
+                  <IdentCon UId="25" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="23" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="24" CompositionName="Items">
+                <AttributeList><Culture>en-US</Culture><Text>12 - Fault aktif: reset perintah jalan</Text></AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="25" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+              <Parts>
+                <Access UId="21" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="RunLatch" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="22" />
+                <Access UId="25" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="StopOK" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="26" />
+                <Access UId="29" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="EStopOK" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="30" />
+                <Access UId="33" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="OverloadOK" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="34" />
+                <Access UId="37" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="FaultLatch" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="38">
+                  <Negated Name="operand" />
+                </Part>
+                <Access UId="41" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="MotorCmd" />
+                  </Symbol>
+                </Access>
+                <Part Name="Coil" UId="42" />
+              </Parts>
+              <Wires>
+                <Wire UId="23">
+                  <Powerrail />
+                  <NameCon UId="22" Name="in" />
+                </Wire>
+                <Wire UId="24">
+                  <IdentCon UId="21" />
+                  <NameCon UId="22" Name="operand" />
+                </Wire>
+                <Wire UId="27">
+                  <NameCon UId="22" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                </Wire>
+                <Wire UId="28">
+                  <IdentCon UId="25" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+                <Wire UId="31">
+                  <NameCon UId="26" Name="out" />
+                  <NameCon UId="30" Name="in" />
+                </Wire>
+                <Wire UId="32">
+                  <IdentCon UId="29" />
+                  <NameCon UId="30" Name="operand" />
+                </Wire>
+                <Wire UId="35">
+                  <NameCon UId="30" Name="out" />
+                  <NameCon UId="34" Name="in" />
+                </Wire>
+                <Wire UId="36">
+                  <IdentCon UId="33" />
+                  <NameCon UId="34" Name="operand" />
+                </Wire>
+                <Wire UId="39">
+                  <NameCon UId="34" Name="out" />
+                  <NameCon UId="38" Name="in" />
+                </Wire>
+                <Wire UId="40">
+                  <IdentCon UId="37" />
+                  <NameCon UId="38" Name="operand" />
+                </Wire>
+                <Wire UId="43">
+                  <NameCon UId="38" Name="out" />
+                  <NameCon UId="42" Name="in" />
+                </Wire>
+                <Wire UId="44">
+                  <IdentCon UId="41" />
+                  <NameCon UId="42" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="26" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="27" CompositionName="Items">
+                <AttributeList><Culture>en-US</Culture><Text>13 - Output motor dengan seluruh permissive</Text></AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="28" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+              <Parts>
+                <Access UId="21" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="MotorCmd" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="22" />
+                <Access UId="25" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="RunLamp" />
+                  </Symbol>
+                </Access>
+                <Part Name="Coil" UId="26" />
+              </Parts>
+              <Wires>
+                <Wire UId="23">
+                  <Powerrail />
+                  <NameCon UId="22" Name="in" />
+                </Wire>
+                <Wire UId="24">
+                  <IdentCon UId="21" />
+                  <NameCon UId="22" Name="operand" />
+                </Wire>
+                <Wire UId="27">
+                  <NameCon UId="22" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                </Wire>
+                <Wire UId="28">
+                  <IdentCon UId="25" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="29" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="2A" CompositionName="Items">
+                <AttributeList><Culture>en-US</Culture><Text>14 - Lampu RUN mengikuti perintah motor</Text></AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="2B" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+              <Parts>
+                <Access UId="21" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="FaultLatch" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="22" />
+                <Access UId="25" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="FaultLamp" />
+                  </Symbol>
+                </Access>
+                <Part Name="Coil" UId="26" />
+              </Parts>
+              <Wires>
+                <Wire UId="23">
+                  <Powerrail />
+                  <NameCon UId="22" Name="in" />
+                </Wire>
+                <Wire UId="24">
+                  <IdentCon UId="21" />
+                  <NameCon UId="22" Name="operand" />
+                </Wire>
+                <Wire UId="27">
+                  <NameCon UId="22" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                </Wire>
+                <Wire UId="28">
+                  <IdentCon UId="25" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="2C" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="2D" CompositionName="Items">
+                <AttributeList><Culture>en-US</Culture><Text>15 - Lampu FAULT mengikuti fault latch</Text></AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+    </ObjectList>
+  </SW.Blocks.FB>
+</Document>

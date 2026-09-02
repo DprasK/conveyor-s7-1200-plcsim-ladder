@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V16" />
+  <SW.Tags.PlcTagTable ID="0">
+    <AttributeList><Name>Conveyor_IO_LAD</Name></AttributeList>
+    <ObjectList>
+      <SW.Tags.PlcTag ID="1" CompositionName="Tags">
+        <AttributeList><DataTypeName>Bool</DataTypeName><LogicalAddress>%I0.0</LogicalAddress><Name>Conveyor_StartButton</Name></AttributeList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="2" CompositionName="Tags">
+        <AttributeList><DataTypeName>Bool</DataTypeName><LogicalAddress>%I0.1</LogicalAddress><Name>Conveyor_StopOK</Name></AttributeList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="3" CompositionName="Tags">
+        <AttributeList><DataTypeName>Bool</DataTypeName><LogicalAddress>%I0.2</LogicalAddress><Name>Conveyor_EStopOK</Name></AttributeList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="4" CompositionName="Tags">
+        <AttributeList><DataTypeName>Bool</DataTypeName><LogicalAddress>%I0.3</LogicalAddress><Name>Conveyor_OverloadOK</Name></AttributeList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="5" CompositionName="Tags">
+        <AttributeList><DataTypeName>Bool</DataTypeName><LogicalAddress>%I0.4</LogicalAddress><Name>Conveyor_JamSensor</Name></AttributeList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="6" CompositionName="Tags">
+        <AttributeList><DataTypeName>Bool</DataTypeName><LogicalAddress>%I0.5</LogicalAddress><Name>Conveyor_ResetButton</Name></AttributeList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="7" CompositionName="Tags">
+        <AttributeList><DataTypeName>Bool</DataTypeName><LogicalAddress>%Q0.0</LogicalAddress><Name>Conveyor_MotorCmd</Name></AttributeList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="8" CompositionName="Tags">
+        <AttributeList><DataTypeName>Bool</DataTypeName><LogicalAddress>%Q0.1</LogicalAddress><Name>Conveyor_RunLamp</Name></AttributeList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="9" CompositionName="Tags">
+        <AttributeList><DataTypeName>Bool</DataTypeName><LogicalAddress>%Q0.2</LogicalAddress><Name>Conveyor_FaultLamp</Name></AttributeList>
+      </SW.Tags.PlcTag>
+    </ObjectList>
+  </SW.Tags.PlcTagTable>
+</Document>

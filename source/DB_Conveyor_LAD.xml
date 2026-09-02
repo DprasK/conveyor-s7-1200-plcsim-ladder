@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V16" />
+  <SW.Blocks.InstanceDB ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <InstanceOfName>FB_Conveyor_LAD</InstanceOfName>
+      <InstanceOfNumber Informative="true">2</InstanceOfNumber>
+      <InstanceOfType Informative="true">FB</InstanceOfType>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v4" /></Interface>
+      <ReadOnly>false</ReadOnly>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>DB_Conveyor_LAD</Name>
+      <Number>2</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+  </SW.Blocks.InstanceDB>
+</Document>

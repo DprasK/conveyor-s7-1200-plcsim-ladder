@@ -1,0 +1,16 @@
+{
+  "name": "conveyor-s7-1200-plcsim",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Simple Siemens S7-1200 conveyor in LAD with PLCSIM guide and browser emulator",
+  "type": "module",
+  "scripts": {
+    "build:lad": "node tools/build-lad-xml.mjs",
+    "check:lad": "node tools/build-lad-xml.mjs --check",
+    "serve": "node tools/serve.mjs",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
