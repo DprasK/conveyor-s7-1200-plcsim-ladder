@@ -23,6 +23,7 @@
           </Section>
           <Section Name="InOut" />
           <Section Name="Static">
+            <Member Name="StartPrev" Datatype="Bool"><StartValue>FALSE</StartValue></Member>
             <Member Name="RunLatch" Datatype="Bool"><StartValue>FALSE</StartValue></Member>
             <Member Name="FaultLatch" Datatype="Bool"><StartValue>FALSE</StartValue></Member>
             <Member Name="JamTimer" Datatype="TON_TIME" />
@@ -466,44 +467,68 @@
                 <Part Name="Contact" UId="22" />
                 <Access UId="25" Scope="LocalVariable">
                   <Symbol>
+                    <Component Name="StartPrev" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="26">
+                  <Negated Name="operand" />
+                </Part>
+                <Access UId="29" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="FirstScan" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="30">
+                  <Negated Name="operand" />
+                </Part>
+                <Access UId="33" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="ResetButton" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="34">
+                  <Negated Name="operand" />
+                </Part>
+                <Access UId="37" Scope="LocalVariable">
+                  <Symbol>
                     <Component Name="StopOK" />
                   </Symbol>
                 </Access>
-                <Part Name="Contact" UId="26" />
-                <Access UId="29" Scope="LocalVariable">
+                <Part Name="Contact" UId="38" />
+                <Access UId="41" Scope="LocalVariable">
                   <Symbol>
                     <Component Name="EStopOK" />
                   </Symbol>
                 </Access>
-                <Part Name="Contact" UId="30" />
-                <Access UId="33" Scope="LocalVariable">
+                <Part Name="Contact" UId="42" />
+                <Access UId="45" Scope="LocalVariable">
                   <Symbol>
                     <Component Name="OverloadOK" />
                   </Symbol>
                 </Access>
-                <Part Name="Contact" UId="34" />
-                <Access UId="37" Scope="LocalVariable">
+                <Part Name="Contact" UId="46" />
+                <Access UId="49" Scope="LocalVariable">
                   <Symbol>
                     <Component Name="JamSensor" />
                   </Symbol>
                 </Access>
-                <Part Name="Contact" UId="38">
+                <Part Name="Contact" UId="50">
                   <Negated Name="operand" />
                 </Part>
-                <Access UId="41" Scope="LocalVariable">
+                <Access UId="53" Scope="LocalVariable">
                   <Symbol>
                     <Component Name="FaultLatch" />
                   </Symbol>
                 </Access>
-                <Part Name="Contact" UId="42">
+                <Part Name="Contact" UId="54">
                   <Negated Name="operand" />
                 </Part>
-                <Access UId="45" Scope="LocalVariable">
+                <Access UId="57" Scope="LocalVariable">
                   <Symbol>
                     <Component Name="RunLatch" />
                   </Symbol>
                 </Access>
-                <Part Name="SCoil" UId="46" />
+                <Part Name="SCoil" UId="58" />
               </Parts>
               <Wires>
                 <Wire UId="23">
@@ -561,6 +586,30 @@
                 <Wire UId="48">
                   <IdentCon UId="45" />
                   <NameCon UId="46" Name="operand" />
+                </Wire>
+                <Wire UId="51">
+                  <NameCon UId="46" Name="out" />
+                  <NameCon UId="50" Name="in" />
+                </Wire>
+                <Wire UId="52">
+                  <IdentCon UId="49" />
+                  <NameCon UId="50" Name="operand" />
+                </Wire>
+                <Wire UId="55">
+                  <NameCon UId="50" Name="out" />
+                  <NameCon UId="54" Name="in" />
+                </Wire>
+                <Wire UId="56">
+                  <IdentCon UId="53" />
+                  <NameCon UId="54" Name="operand" />
+                </Wire>
+                <Wire UId="59">
+                  <NameCon UId="54" Name="out" />
+                  <NameCon UId="58" Name="in" />
+                </Wire>
+                <Wire UId="60">
+                  <IdentCon UId="57" />
+                  <NameCon UId="58" Name="operand" />
                 </Wire>
               </Wires>
             </FlgNet>
@@ -986,6 +1035,56 @@
             <ObjectList>
               <MultilingualTextItem ID="2D" CompositionName="Items">
                 <AttributeList><Culture>en-US</Culture><Text>15 - Lampu FAULT mengikuti fault latch</Text></AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="2E" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+              <Parts>
+                <Access UId="21" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="StartButton" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="22" />
+                <Access UId="25" Scope="LocalVariable">
+                  <Symbol>
+                    <Component Name="StartPrev" />
+                  </Symbol>
+                </Access>
+                <Part Name="Coil" UId="26" />
+              </Parts>
+              <Wires>
+                <Wire UId="23">
+                  <Powerrail />
+                  <NameCon UId="22" Name="in" />
+                </Wire>
+                <Wire UId="24">
+                  <IdentCon UId="21" />
+                  <NameCon UId="22" Name="operand" />
+                </Wire>
+                <Wire UId="27">
+                  <NameCon UId="22" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                </Wire>
+                <Wire UId="28">
+                  <IdentCon UId="25" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="2F" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="30" CompositionName="Items">
+                <AttributeList><Culture>en-US</Culture><Text>16 - Simpan START untuk deteksi tekan baru</Text></AttributeList>
               </MultilingualTextItem>
             </ObjectList>
           </MultilingualText>

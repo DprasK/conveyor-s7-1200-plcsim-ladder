@@ -19,6 +19,6 @@ Program utama berada di `FB_Conveyor_LAD [FB2]`. Semua network memakai LAD nativ
 | 13 | Aktifkan `MotorCmd` dari latch dan seluruh permissive. |
 | 14 | `RunLamp` mengikuti `MotorCmd`. |
 | 15 | `FaultLamp` mengikuti `FaultLatch`. |
+| 16 | Simpan keadaan START agar hanya penekanan baru diterima; START tertahan saat startup/STOP tidak menyebabkan restart otomatis. |
 
 `Main [OB1]` hanya memanggil FB tersebut melalui `DB_Conveyor_LAD [DB2]` dan memetakan PLC tags fisik. Nilai awal `JamTime` pada pemanggilan OB1 adalah `T#5s`.
-

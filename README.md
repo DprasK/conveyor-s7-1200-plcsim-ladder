@@ -1,35 +1,43 @@
-# Conveyor sederhana Siemens S7-1200 — Ladder + PLCSIM
+# Conveyor sederhana — TIA Portal V16, LAD, S7-PLCSIM
 
 Proyek latihan conveyor satu motor untuk **TIA Portal V16** dan **S7-PLCSIM V16**. Logika PLC dibuat sepenuhnya dalam **LAD (Ladder Diagram)**: START/STOP latch, permissive E-Stop dan overload, timer deteksi macet 5 detik, reset gangguan, serta lampu RUN/FAULT.
 
 > Proyek edukasi, bukan program siap dipasang pada mesin. Baca [batas keselamatan](docs/SAFETY.md) sebelum menggunakan source.
 
+## Buka proyek TIA langsung
+
+Download **[Conveyor_LAD_V16.zap16](project/Conveyor_LAD_V16.zap16)**, lalu di TIA Portal V16 gunakan **Project > Open** dan pilih arsip untuk retrieve ke folder lokal. Buka `.ap16` hasil retrieve. CPU, tag, OB1, FB2 dan DB2 sudah tersedia di dalam proyek; tidak perlu impor XML untuk penggunaan biasa.
+
+Arsip dibuat melalui **Project > Archive** di TIA V16. Compile hardware/software berhasil dengan **0 error, 1 warning** (proteksi akses CPU belum dikonfigurasi). Download ke **S7-PLCSIM** berhasil dengan **0 error, 0 warning**. Detail uji: [VALIDATION.md](VALIDATION.md).
+
 ## Fitur
 
 - Siemens S7-1200 CPU 1214C DC/DC/DC sebagai target contoh.
 - `Main [OB1]` LAD memanggil `FB_Conveyor_LAD [FB2]` dan `DB_Conveyor_LAD [DB2]`.
-- 15 network Ladder yang dapat ditinjau di [daftar network](docs/LAD_NETWORKS.md).
+- 16 network Ladder yang dapat ditinjau di [daftar network](docs/LAD_NETWORKS.md), termasuk pencegahan restart jika START ditahan.
 - 6 digital input dan 3 digital output; lihat [I/O list](docs/IO_List.csv).
-- Source XML TIA V16 yang bisa diimpor, bukan screenshot atau pseudocode.
-- Emulator visual browser tanpa instalasi library.
-- Delapan unit test dan pemeriksaan konsistensi source LAD.
+- Arsip proyek native `.zap16` dan source XML yang sudah berhasil diimpor serta di-compile di TIA V16.
+- Emulator browser lama tetap tersedia sebagai pelengkap; bukan pengganti S7-PLCSIM.
+- 14 pemeriksaan otomatis: 10 skenario model scan dan 4 pemeriksaan source LAD.
 - Workflow GitHub Actions untuk menjalankan validasi pada setiap push.
 
 ## Struktur proyek
 
 ```text
-source/                      XML impor TIA Portal V16
+project/Conveyor_LAD_V16.zap16 Arsip proyek native TIA V16
+source/                      XML alternatif untuk rebuild via VCI
   Conveyor_IO_LAD.xml       PLC tag table
-  FB_Conveyor_LAD.xml       FB2, 15 network Ladder
+  FB_Conveyor_LAD.xml       FB2, 16 network Ladder
   DB_Conveyor_LAD.xml       Instance DB2
   Main_LAD.xml              OB1 Ladder
 emulator/                    Emulator visual di browser
 tests/                       Test model scan dan source LAD
-docs/UJI_PLCSIM.md           Langkah import, download, dan uji PLCSIM
+docs/UJI_PLCSIM.md           Langkah retrieve, download, dan uji PLCSIM
+docs/screenshots/            Bukti pemeriksaan di aplikasi Siemens
 tools/build-lad-xml.mjs      Generator deterministik source XML LAD
 ```
 
-## Mencoba emulator visual
+## Pelengkap: emulator browser
 
 Karena browser membatasi modul JavaScript pada URL `file://`, jalankan web server lokal bawaan dari root repository:
 
@@ -52,7 +60,7 @@ npm run check:lad
 
 ## Memakai di TIA Portal dan PLCSIM
 
-Ikuti [panduan lengkap S7-PLCSIM](docs/UJI_PLCSIM.md). Ringkasnya: buat proyek baru, tambahkan CPU, impor tag table, FB, instance DB, dan OB1 secara berurutan, compile, lalu download ke PLCSIM. Jangan download ke PLC fisik sebelum desain listrik dan risiko mesin ditinjau teknisi yang kompeten.
+Ikuti [panduan lengkap S7-PLCSIM](docs/UJI_PLCSIM.md). Ringkasnya: retrieve arsip `.zap16`, pilih `PLC_Conveyor`, klik **Start simulation**, kemudian download hanya ke target **Simulated module**. Jangan download ke PLC fisik sebelum desain listrik dan risiko mesin ditinjau teknisi yang kompeten.
 
 ## Pemetaan I/O
 

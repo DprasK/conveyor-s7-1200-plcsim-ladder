@@ -67,8 +67,8 @@
                 <Call UId="32">
                   <CallInfo Name="FB_Conveyor_LAD" BlockType="FB">
                     <Instance Scope="GlobalVariable" UId="33"><Component Name="DB_Conveyor_LAD" /></Instance>
-+                    <Parameter Name="FirstScan" Section="Input" Type="Bool" /><Parameter Name="StartButton" Section="Input" Type="Bool" /><Parameter Name="StopOK" Section="Input" Type="Bool" /><Parameter Name="EStopOK" Section="Input" Type="Bool" /><Parameter Name="OverloadOK" Section="Input" Type="Bool" /><Parameter Name="JamSensor" Section="Input" Type="Bool" /><Parameter Name="ResetButton" Section="Input" Type="Bool" /><Parameter Name="JamTime" Section="Input" Type="Time" />
-+                    <Parameter Name="MotorCmd" Section="Output" Type="Bool" /><Parameter Name="RunLamp" Section="Output" Type="Bool" /><Parameter Name="FaultLamp" Section="Output" Type="Bool" />
+                    <Parameter Name="FirstScan" Section="Input" Type="Bool" /><Parameter Name="StartButton" Section="Input" Type="Bool" /><Parameter Name="StopOK" Section="Input" Type="Bool" /><Parameter Name="EStopOK" Section="Input" Type="Bool" /><Parameter Name="OverloadOK" Section="Input" Type="Bool" /><Parameter Name="JamSensor" Section="Input" Type="Bool" /><Parameter Name="ResetButton" Section="Input" Type="Bool" /><Parameter Name="JamTime" Section="Input" Type="Time" />
+                    <Parameter Name="MotorCmd" Section="Output" Type="Bool" /><Parameter Name="RunLamp" Section="Output" Type="Bool" /><Parameter Name="FaultLamp" Section="Output" Type="Bool" />
                   </CallInfo>
                 </Call>
               </Parts>

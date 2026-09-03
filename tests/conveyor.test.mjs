@@ -70,3 +70,23 @@ test('START is rejected while the jam sensor is already blocked', () => {
   assert.equal(plc.motorCmd, false);
 });
 
+test('START held at CPU startup cannot run until released and pressed again', () => {
+  let plc = scanPLC(createPLC(), { ...healthy, startButton: true });
+  plc = scanPLC(plc, { ...healthy, startButton: true });
+  assert.equal(plc.motorCmd, false);
+  plc = scanPLC(plc, healthy);
+  plc = scanPLC(plc, { ...healthy, startButton: true });
+  assert.equal(plc.motorCmd, true);
+});
+
+test('STOP release and fault RESET cannot restart a held START', () => {
+  let plc = scanPLC(createPLC(), healthy);
+  plc = scanPLC(plc, { ...healthy, startButton: true });
+  plc = scanPLC(plc, { ...healthy, startButton: true, stopOK: false });
+  plc = scanPLC(plc, { ...healthy, startButton: true });
+  assert.equal(plc.motorCmd, false);
+  plc = scanPLC(plc, { ...healthy, eStopOK: false });
+  plc = scanPLC(plc, { ...healthy, startButton: true, resetButton: true });
+  plc = scanPLC(plc, { ...healthy, startButton: true });
+  assert.equal(plc.motorCmd, false);
+});

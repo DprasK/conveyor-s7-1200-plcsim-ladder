@@ -5,11 +5,10 @@
     <AttributeList>
       <AutoNumber>false</AutoNumber>
       <InstanceOfName>FB_Conveyor_LAD</InstanceOfName>
-      <InstanceOfNumber Informative="true">2</InstanceOfNumber>
-      <InstanceOfType Informative="true">FB</InstanceOfType>
+      <InstanceOfNumber ReadOnly="true">2</InstanceOfNumber>
+      <InstanceOfType ReadOnly="true">FB</InstanceOfType>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v4" /></Interface>
-      <ReadOnly>false</ReadOnly>
-      <MemoryLayout>Optimized</MemoryLayout>
+        <MemoryLayout ReadOnly="true">Optimized</MemoryLayout>
       <Name>DB_Conveyor_LAD</Name>
       <Number>2</Number>
       <ProgrammingLanguage>DB</ProgrammingLanguage>

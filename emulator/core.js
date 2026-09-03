@@ -10,6 +10,7 @@ export const DEFAULT_INPUTS = Object.freeze({
 export function createPLC() {
   return {
     firstScan: true,
+    startPrev: false,
     runLatch: false,
     faultLatch: false,
     jamElapsedMs: 0,
@@ -37,7 +38,7 @@ export function scanPLC(previous, suppliedInputs = {}, dtMs = 100, jamTimeMs = 5
   if (state.jamElapsedMs >= jamTimeMs) state.faultLatch = true;
 
   if (input.resetButton && healthy && !input.jamSensor) state.faultLatch = false;
-  if (input.startButton && healthy && !input.jamSensor && !state.faultLatch) state.runLatch = true;
+  if (input.startButton && !state.startPrev && !state.firstScan && !input.resetButton && healthy && !input.jamSensor && !state.faultLatch) state.runLatch = true;
   if (!input.stopOK || !input.eStopOK || !input.overloadOK || state.faultLatch) {
     state.runLatch = false;
   }
@@ -46,5 +47,6 @@ export function scanPLC(previous, suppliedInputs = {}, dtMs = 100, jamTimeMs = 5
   state.runLamp = state.motorCmd;
   state.faultLamp = state.faultLatch;
   state.firstScan = false;
+  state.startPrev = input.startButton;
   return state;
 }
