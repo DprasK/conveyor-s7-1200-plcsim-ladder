@@ -31,6 +31,8 @@ Alur Version Control Interface ini telah digunakan untuk import ke TIA V16. XML 
 3. Buat SIM table berisi alamat `%I0.0`–`%I0.5` dan `%Q0.0`–`%Q0.2`.
 4. Set kondisi sehat awal: `%I0.1=1`, `%I0.2=1`, `%I0.3=1`, `%I0.4=0`. Input lain 0.
 
+Alternatif yang sudah disiapkan di dalam proyek: buka **Watch and force tables > Force table**. Keenam input sudah tercantum sebagai peripheral input `%I0.0:P`–`%I0.5:P`. Klik **Force all** dan konfirmasi hanya ketika target benar-benar PLCSIM. Ubah kolom **Force value**, bukan deklarasi parameter di FB. Hentikan forcing setelah pengujian.
+
 ## 3. Skenario penerimaan
 
 | Uji | Urutan input | Hasil yang diharapkan |

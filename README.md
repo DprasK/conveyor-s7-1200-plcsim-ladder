@@ -8,7 +8,7 @@ Proyek latihan conveyor satu motor untuk **TIA Portal V16** dan **S7-PLCSIM V16*
 
 Download **[Conveyor_LAD_V16.zap16](project/Conveyor_LAD_V16.zap16)**, lalu di TIA Portal V16 gunakan **Project > Open** dan pilih arsip untuk retrieve ke folder lokal. Buka `.ap16` hasil retrieve. CPU, tag, OB1, FB2 dan DB2 sudah tersedia di dalam proyek; tidak perlu impor XML untuk penggunaan biasa.
 
-Arsip dibuat melalui **Project > Archive** di TIA V16. Compile hardware/software berhasil dengan **0 error, 1 warning** (proteksi akses CPU belum dikonfigurasi). Download ke **S7-PLCSIM** berhasil dengan **0 error, 0 warning**. Detail uji: [VALIDATION.md](VALIDATION.md).
+Arsip dibuat melalui **Project > Archive** di TIA V16. Compile hardware/software berhasil dengan **0 error, 1 warning** (proteksi akses CPU belum dikonfigurasi). Download ke **S7-PLCSIM** berhasil dengan **0 error, 0 warning**. `Force table` sudah berisi keenam input `%I0.0:P`–`%I0.5:P` beserta kondisi awal aman, sehingga tombol **Force all** langsung tersedia. Detail uji: [VALIDATION.md](VALIDATION.md).
 
 ## Fitur
 
