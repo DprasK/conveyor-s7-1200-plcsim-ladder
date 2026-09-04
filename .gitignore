@@ -1,6 +1,0 @@
-node_modules/
-*.ap16
-project/Conveyor_LAD_V16_*/
-*.log
-.DS_Store
-Thumbs.db
