@@ -4,8 +4,7 @@ Proyek native dibuat dan diperiksa langsung di **TIA Portal V16**, dalam VM Wind
 
 | Pemeriksaan | Status |
 |---|---|
-| Unit test model scan PLC | 10 skenario lulus |
-| Pemeriksaan source LAD | 4 pemeriksaan lulus; total `npm test` 14/14 |
+| Pemeriksaan source LAD | 4 pemeriksaan lulus; total `npm test` 4/4 |
 | Konsistensi source LAD hasil generator | Lulus |
 | Pemetaan 6 DI + 3 DQ unik | Lulus |
 | Bahasa blok FB dan OB | LAD |
@@ -33,6 +32,6 @@ Forcing keenam input berhasil diaktifkan pada PLCSIM dan kemudian dihentikan kem
 - SHA-256: `1F1194D570E3B1BF143033394C81149C3E8EEDB394FCAFDFE0C6D03DE1B94A17`.
 - Isi ZIP diperiksa: `Conveyor_LAD_V16.ap16`, `System/PEData.plf`, serta berkas pendukung proyek tersedia. Pengujian retrieve ulang di TIA belum dilakukan.
 
-XML DB diperbaiki berdasarkan error importer V16; metadata read-only kini sesuai dan sudah berhasil diimpor. OB1 dibersihkan dari karakter patch yang tidak valid. Pencegahan restart dengan START ditahan ditambahkan dan lolos uji model.
+XML DB diperbaiki berdasarkan error importer V16; metadata read-only kini sesuai dan sudah berhasil diimpor. OB1 dibersihkan dari karakter patch yang tidak valid. Pencegahan restart dengan START ditahan tersedia pada network 8 dan 16.
 
-Tes Node memeriksa perilaku logika dan konsistensi artefak, tetapi tidak menggantikan compiler Siemens atau pengujian hardware. Jalankan `npm test` dan `npm run check:lad` untuk mengulang pemeriksaan lokal.
+Tes Node hanya memeriksa struktur dan konsistensi artefak source; bukan simulator PLC dan tidak menggantikan compiler Siemens. Jalankan `npm test` dan `npm run check:lad` untuk mengulang pemeriksaan source.

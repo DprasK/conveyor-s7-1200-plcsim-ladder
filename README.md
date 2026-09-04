@@ -17,8 +17,7 @@ Arsip dibuat melalui **Project > Archive** di TIA V16. Compile hardware/software
 - 16 network Ladder yang dapat ditinjau di [daftar network](docs/LAD_NETWORKS.md), termasuk pencegahan restart jika START ditahan.
 - 6 digital input dan 3 digital output; lihat [I/O list](docs/IO_List.csv).
 - Arsip proyek native `.zap16` dan source XML yang sudah berhasil diimpor serta di-compile di TIA V16.
-- Emulator browser lama tetap tersedia sebagai pelengkap; bukan pengganti S7-PLCSIM.
-- 14 pemeriksaan otomatis: 10 skenario model scan dan 4 pemeriksaan source LAD.
+- Empat pemeriksaan otomatis untuk bahasa LAD, jumlah network, pemetaan alamat, pemanggilan FB/DB, dan metadata XML V16.
 - Workflow GitHub Actions untuk menjalankan validasi pada setiap push.
 
 ## Struktur proyek
@@ -30,24 +29,11 @@ source/                      XML alternatif untuk rebuild via VCI
   FB_Conveyor_LAD.xml       FB2, 16 network Ladder
   DB_Conveyor_LAD.xml       Instance DB2
   Main_LAD.xml              OB1 Ladder
-emulator/                    Emulator visual di browser
-tests/                       Test model scan dan source LAD
+tests/                       Pemeriksaan source LAD
 docs/UJI_PLCSIM.md           Langkah retrieve, download, dan uji PLCSIM
 docs/screenshots/            Bukti pemeriksaan di aplikasi Siemens
 tools/build-lad-xml.mjs      Generator deterministik source XML LAD
 ```
-
-## Pelengkap: emulator browser
-
-Karena browser membatasi modul JavaScript pada URL `file://`, jalankan web server lokal bawaan dari root repository:
-
-```powershell
-npm run serve
-```
-
-Lalu buka `http://127.0.0.1:4173/`. Server hanya memakai modul bawaan Node.js dan tidak mengunduh package.
-
-Tekan **START**, tambahkan produk, lalu aktifkan **Simulasi macet**. Ketika produk menahan sensor selama 5 detik, fault akan latch dan motor berhenti. Nonaktifkan simulasi macet, tekan **Bersihkan sensor**, pulihkan permissive, tekan **RESET**, kemudian START kembali.
 
 ## Menjalankan pengujian
 
@@ -78,4 +64,4 @@ Ikuti [panduan lengkap S7-PLCSIM](docs/UJI_PLCSIM.md). Ringkasnya: retrieve arsi
 
 ## Catatan validasi
 
-Hasil dan batas pemeriksaan dicatat di [VALIDATION.md](VALIDATION.md). Model emulator mengikuti urutan network LAD dari atas ke bawah, termasuk latch, permissive, dan TON jam. Tetap lakukan compile TIA dan seluruh skenario PLCSIM karena test JavaScript bukan compiler Siemens.
+Hasil dan batas pemeriksaan dicatat di [VALIDATION.md](VALIDATION.md). Repository ini tidak lagi menyertakan simulator JavaScript; simulasi dijalankan menggunakan S7-PLCSIM V16.
